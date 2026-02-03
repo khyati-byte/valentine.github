@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valentine?</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: "Inter", "Helvetica Neue", sans-serif;
+      background: linear-gradient(180deg, #fff1f6, #ffffff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      padding: 48px 56px;
+      border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+      text-align: center;
+      width: 420px;
+    }
+
+    h1 {
+      color: #a61e4d;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .subtle {
+      font-size: 14px;
+      color: #777;
+      font-style: italic;
+      margin-bottom: 36px;
+    }
+
+    .button-area {
+      position: relative;
+      height: 140px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+    }
+
+    button {
+      padding: 14px 34px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.2s ease;
+      position: relative;
+    }
+
+    #yes {
+      background: #d6336c;
+      color: white;
+    }
+
+    #yes:hover {
+      background: #b5174d;
+      transform: translateY(-1px);
+    }
+
+    #no {
+      background: #f3f3f3;
+      color: #555;
+    }
+
+    .result {
+      display: none;
+    }
+
+    .result img {
+      width: 100%;
+      border-radius: 14px;
+      margin-top: 24px;
+    }
+
+    .final-text {
+      margin-top: 14px;
+      font-size: 18px;
+      color: #444;
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- QUESTION CARD -->
+  <div class="card" id="questionCard">
+    <h1>Will you be my Valentine?</h1>
+    <div class="subtle">No seems a bit shy today 😈😉</div>
+
+    <div class="button-area" id="buttonArea">
+      <button id="yes">Yes</button>
+      <button id="no">No</button>
+    </div>
+  </div>
+
+  <!-- RESULT CARD -->
+  <div class="card result" id="resultCard">
+    <h1>Excellent choice.</h1>
+    <div class="final-text">This decision has impeccable taste.
+</div>
+
+    <!-- Replace this image -->
+    <img src="meme.gif" alt="Celebration gif">
+
+  </div>
+
+  <script>
+    const noButton = document.getElementById("no");
+    const yesButton = document.getElementById("yes");
+    const buttonArea = document.getElementById("buttonArea");
+    const questionCard = document.getElementById("questionCard");
+    const resultCard = document.getElementById("resultCard");
+
+    noButton.addEventListener("mouseenter", () => {
+      const areaRect = buttonArea.getBoundingClientRect();
+      const btnRect = noButton.getBoundingClientRect();
+
+      const maxX = areaRect.width - btnRect.width;
+      const maxY = areaRect.height - btnRect.height;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noButton.style.position = "absolute";
+      noButton.style.left = x + "px";
+      noButton.style.top = y + "px";
+    });
+
+    yesButton.addEventListener("click", () => {
+      questionCard.style.display = "none";
+      resultCard.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
